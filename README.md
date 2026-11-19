@@ -1,94 +1,97 @@
-# Putting it All Together: Components and Props
 
-## Learning Goals
+# Blog Site
 
-- Create components that return JSX
-- Use props to make components dynamic
-- Transform lists of data into lists of components
+A simple personal blog built with React. This project demonstrates how to create reusable React components, pass data using props, and render a list of blog posts dynamically.
 
-## Overview
+## Project Overview
 
-Now that you've learned how to work with components in React, it's time to build
-something and put those skills to use! Your goal for this lab is to make a
-_static site_ in React to practice building components, writing JSX, and passing
-down data as props.
+The blog displays:
+- The blog name in the header.
+- A blog logo and description in the About section.
+- A list of articles, each displaying its title, publication date, and preview.
 
-We'll be creating a personal blog site, similar to
-[Dan Abramov's Overreacted](https://overreacted.io/):
+The blog content is stored in `src/data/blog.js` and passed to components through props.
 
-![demo](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-component-props-mini-project/demo.png)
+## Component Structure
 
-There is some starter code available in `src/components/App.js`. There is also
-some data in `data/blog.js` that is being imported into `App` so you can pass it
-down to the components that need it.
+The application follows this component hierarchy:
 
-## Deliverables
+```text
+App
+├── Header
+├── About
+└── ArticleList
+    └── Article
+```
 
-Have a look at the components below and draw out a component hierarchy so you
-can determine how to pass data down as props.
+### Components  
 
-### Header
+- **App:** The main component. Imports the blog data and renders the other components.
+- **Header:** Displays the blog name using the `name` prop.
+- **About:** Displays the blog logo and description using the `image` and `about` props.
+- **ArticleList:** Receives the posts array and renders an Article component for each post.
+- **Article:** Displays an individual article's title, date, and preview using props.
 
-Make a `Header` component as a child of `App`. It should return:
+## Technologies Used
 
-- a `<header>` element with the following elements inside:
-  - an `<h1>` with the name of the blog, passed as a prop called `name`
+- React
+- JavaScript
+- JSX
+- Vite
+- Vitest
+- React Testing Library
 
-### About
+## Installation and Setup
 
-Make an `About` component as a child of `App`. It should return:
+### 1. Clone the repository
 
-- an `<aside>` element with the following elements inside:
-  - an `<img>` element, with the `src` set to an image passed as a prop called
-    `image`
-  - the `<img>` element should use this placeholder image as a _default value_
-    for the prop if no prop is passed in: "https://via.placeholder.com/215"
-  - the image should also be accessible! Give it an `alt` attribute of "blog
-    logo"
-  - a `<p>` element, with the text for the blog passed in as a prop called
-    `about`
+```bash
+git clone https://github.com/Leonard371832/react-components-props-vite-lab.git
+```
 
-### ArticleList
+### 2. Navigate into the project directory
 
-Make an `ArticleList` component as a child of `App`. It should return:
+```bash
+cd react-components-props-vite-lab
+```
 
-- a `<main>` element with the following components inside:
-  - an array of `Article` components (one component for each of the `posts`
-    passed down as props to `ArticleList`)
-  - make sure to assign a unique `key` attribute to each `Article`
+### 3. Install dependencies
 
-### Article
+```bash
+npm install
+```
 
-Make an `Article` component as a child of `ArticleList`. It should return:
+### 4. Start the development server
 
-- an `<article>` element, with the following elements inside:
-  - an `<h3>` element displaying the title of the article, passed as a prop
-    called `title`
-  - a `<small>` element displaying the date of the article, passed as a prop
-    called `date`
-    - a _default value_ of "January 1, 1970" should be used if no date is passed
-      as a prop
-  - a `<p>` element displaying the preview of the article, passed as a prop
-    called `preview`
+```bash
+npm run dev
+```
 
-### Bonus Feature: 'Minutes to Read'
+Open the local URL provided by Vite in your browser to view the blog.
 
-You'll notice in the original [Overreacted](https://overreacted.io/) site,
-there's a 'minutes to read' indicator next to each article.
+## Running Tests
 
-If the article takes less than 30 minutes to read:
+Run the test suite with:
 
-- For every 5 minutes (rounded up to the nearest 5), display a coffee cup emoji.
-  For example, if the article takes 3 minutes to read, you should display "☕️ 3
-  min read". If the article takes 7 minute, you should display "☕️☕️ 7 min
-  read".
+```bash
+npm test
+```
 
-If the article takes 30 minutes or longer to read:
+The tests verify that the components render correctly, receive props, and display the expected content.
 
-- For every 10 minutes (rounded up to the nearest 10), display a bento box
-  emoji. For example, if the article takes 35 minutes to read, you should
-  display "🍱🍱🍱🍱 35 min read". If the article takes 61 minutes to read, you
-  should display "🍱🍱🍱🍱🍱🍱🍱 61 min read".
+## Screenshot
 
-There aren't tests for this feature, so you'll have to rely on running the code
-in the browser to see if your implementation works!
+The screenshot below shows the completed Blog Site application.
+
+![Blog Site Screenshot](./images/blog-site.png)
+
+## Learning Objectives
+
+This project provided practice in:
+
+- Creating reusable functional React components.
+- Passing data between components using props.
+- Rendering lists of components using JavaScript's `map()` method.
+- Using unique keys when rendering lists.
+- Applying default prop values.
+- Testing React components using Vitest and React Testing Library.
